@@ -20,7 +20,6 @@
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="none" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="-1" estimatedSectionHeaderHeight="-1" sectionFooterHeight="-1" estimatedSectionFooterHeight="-1" translatesAutoresizingMaskIntoConstraints="NO" id="tzy-Wq-OD8">
                                 <rect key="frame" x="0.0" y="0.0" width="393" height="852"/>
                                 <color key="backgroundColor" name="YP Black"/>
-                                <color key="separatorColor" name="YP Black"/>
                                 <prototypes>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="ImagesListCell" rowHeight="125" id="EIn-sh-kdc" customClass="ImagesListCell" customModule="PixelStream" customModuleProvider="target">
                                         <rect key="frame" x="0.0" y="50" width="393" height="125"/>
@@ -30,7 +29,7 @@
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="0" translatesAutoresizingMaskIntoConstraints="NO" id="VZz-zf-fVQ" userLabel="Cell Image">
-                                                    <rect key="frame" x="16" y="0.0" width="361" height="125"/>
+                                                    <rect key="frame" x="16" y="4" width="361" height="117"/>
                                                     <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                     <userDefinedRuntimeAttributes>
                                                         <userDefinedRuntimeAttribute type="boolean" keyPath="layer.masksToBounds" value="YES"/>
@@ -40,7 +39,7 @@
                                                     </userDefinedRuntimeAttributes>
                                                 </imageView>
                                                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="bCe-DY-qLe" userLabel="Like Button">
-                                                    <rect key="frame" x="333" y="4" width="44" height="44"/>
+                                                    <rect key="frame" x="333" y="8" width="44" height="44"/>
                                                     <constraints>
                                                         <constraint firstAttribute="height" constant="44" id="AdX-Fg-AHF"/>
                                                         <constraint firstAttribute="width" constant="44" id="Bdi-Dk-ZQl"/>
@@ -49,7 +48,7 @@
                                                     <state key="normal" image="Active"/>
                                                 </button>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="23 ноября 2024 " textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Kj6-MX-zmz" userLabel="Date Label">
-                                                    <rect key="frame" x="24" y="101" width="104" height="16"/>
+                                                    <rect key="frame" x="24" y="97" width="104" height="16"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="13"/>
                                                     <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                     <nil key="highlightedColor"/>
@@ -59,15 +58,21 @@
                                             <constraints>
                                                 <constraint firstAttribute="trailing" relation="greaterThanOrEqual" secondItem="Kj6-MX-zmz" secondAttribute="trailing" constant="8" id="GfN-mY-qFc"/>
                                                 <constraint firstItem="VZz-zf-fVQ" firstAttribute="leading" secondItem="S0K-p3-X8G" secondAttribute="leading" constant="16" id="JMp-Cf-icW"/>
-                                                <constraint firstAttribute="bottom" secondItem="VZz-zf-fVQ" secondAttribute="bottom" id="LoV-4g-OS3" userLabel="bottom = 0.bottom + 4"/>
+                                                <constraint firstAttribute="bottom" secondItem="VZz-zf-fVQ" secondAttribute="bottom" constant="4" id="LoV-4g-OS3" userLabel="bottom = Cell Image.bottom + 4"/>
                                                 <constraint firstAttribute="trailing" secondItem="VZz-zf-fVQ" secondAttribute="trailing" constant="16" id="MBg-bs-VZ9"/>
-                                                <constraint firstItem="VZz-zf-fVQ" firstAttribute="top" secondItem="S0K-p3-X8G" secondAttribute="top" id="MO1-QV-lUT" userLabel="0.top = top + 4"/>
+                                                <constraint firstItem="VZz-zf-fVQ" firstAttribute="top" secondItem="S0K-p3-X8G" secondAttribute="top" constant="4" id="MO1-QV-lUT" userLabel="Cell Image.top = top + 4"/>
                                                 <constraint firstItem="bCe-DY-qLe" firstAttribute="top" secondItem="VZz-zf-fVQ" secondAttribute="top" constant="4" id="VU4-JU-S7Y"/>
-                                                <constraint firstAttribute="bottom" secondItem="Kj6-MX-zmz" secondAttribute="bottom" constant="8" id="c8j-5M-dDl" userLabel="0.bottom = Date Label.bottom + 8"/>
+                                                <constraint firstAttribute="bottom" secondItem="Kj6-MX-zmz" secondAttribute="bottom" constant="12" id="c8j-5M-dDl" userLabel="Cell Image.bottom = Date Label.bottom + 8"/>
                                                 <constraint firstItem="bCe-DY-qLe" firstAttribute="trailing" secondItem="VZz-zf-fVQ" secondAttribute="trailing" id="u7y-zy-AMl"/>
                                                 <constraint firstItem="Kj6-MX-zmz" firstAttribute="leading" secondItem="S0K-p3-X8G" secondAttribute="leading" constant="24" id="xlx-eV-0kD"/>
                                             </constraints>
                                         </tableViewCellContentView>
+                                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        <connections>
+                                            <outlet property="dateLabel" destination="Kj6-MX-zmz" id="LcE-so-HEj"/>
+                                            <outlet property="imageContent" destination="VZz-zf-fVQ" id="PWH-TW-vph"/>
+                                            <outlet property="likeButton" destination="bCe-DY-qLe" id="Fmj-VG-6lm"/>
+                                        </connections>
                                     </tableViewCell>
                                 </prototypes>
                                 <connections>
