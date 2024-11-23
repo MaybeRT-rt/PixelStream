@@ -40,7 +40,7 @@
                                                     </userDefinedRuntimeAttributes>
                                                 </imageView>
                                                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="bCe-DY-qLe" userLabel="Like Button">
-                                                    <rect key="frame" x="333" y="0.0" width="44" height="44"/>
+                                                    <rect key="frame" x="333" y="4" width="44" height="44"/>
                                                     <constraints>
                                                         <constraint firstAttribute="height" constant="44" id="AdX-Fg-AHF"/>
                                                         <constraint firstAttribute="width" constant="44" id="Bdi-Dk-ZQl"/>
@@ -57,15 +57,15 @@
                                             </subviews>
                                             <color key="backgroundColor" name="YP Black"/>
                                             <constraints>
-                                                <constraint firstItem="Kj6-MX-zmz" firstAttribute="leading" secondItem="S0K-p3-X8G" secondAttribute="leadingMargin" constant="4" id="0BF-Th-pei"/>
                                                 <constraint firstAttribute="trailing" relation="greaterThanOrEqual" secondItem="Kj6-MX-zmz" secondAttribute="trailing" constant="8" id="GfN-mY-qFc"/>
                                                 <constraint firstItem="VZz-zf-fVQ" firstAttribute="leading" secondItem="S0K-p3-X8G" secondAttribute="leading" constant="16" id="JMp-Cf-icW"/>
                                                 <constraint firstAttribute="bottom" secondItem="VZz-zf-fVQ" secondAttribute="bottom" id="LoV-4g-OS3" userLabel="bottom = 0.bottom + 4"/>
                                                 <constraint firstAttribute="trailing" secondItem="VZz-zf-fVQ" secondAttribute="trailing" constant="16" id="MBg-bs-VZ9"/>
                                                 <constraint firstItem="VZz-zf-fVQ" firstAttribute="top" secondItem="S0K-p3-X8G" secondAttribute="top" id="MO1-QV-lUT" userLabel="0.top = top + 4"/>
-                                                <constraint firstItem="bCe-DY-qLe" firstAttribute="top" secondItem="VZz-zf-fVQ" secondAttribute="top" id="VU4-JU-S7Y"/>
-                                                <constraint firstItem="Kj6-MX-zmz" firstAttribute="bottom" secondItem="S0K-p3-X8G" secondAttribute="bottomMargin" constant="3" id="r8f-H9-P3k"/>
+                                                <constraint firstItem="bCe-DY-qLe" firstAttribute="top" secondItem="VZz-zf-fVQ" secondAttribute="top" constant="4" id="VU4-JU-S7Y"/>
+                                                <constraint firstAttribute="bottom" secondItem="Kj6-MX-zmz" secondAttribute="bottom" constant="8" id="c8j-5M-dDl" userLabel="0.bottom = Date Label.bottom + 8"/>
                                                 <constraint firstItem="bCe-DY-qLe" firstAttribute="trailing" secondItem="VZz-zf-fVQ" secondAttribute="trailing" id="u7y-zy-AMl"/>
+                                                <constraint firstItem="Kj6-MX-zmz" firstAttribute="leading" secondItem="S0K-p3-X8G" secondAttribute="leading" constant="24" id="xlx-eV-0kD"/>
                                             </constraints>
                                         </tableViewCellContentView>
                                     </tableViewCell>
