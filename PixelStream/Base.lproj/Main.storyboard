@@ -93,11 +93,42 @@
                     <navigationItem key="navigationItem" id="DCU-5w-Fxn"/>
                     <connections>
                         <outlet property="tableView" destination="tzy-Wq-OD8" id="bOR-Zp-5FR"/>
+                        <segue destination="tpc-RJ-wOZ" kind="show" identifier="ShowSingleImage" id="ZZb-Jt-cv2"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="1626.7175572519084" y="325.35211267605638"/>
+        </scene>
+        <!--Single Image View Controller-->
+        <scene sceneID="idS-iU-U1x">
+            <objects>
+                <viewController id="tpc-RJ-wOZ" customClass="SingleImageViewController" customModule="PixelStream" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="NuG-xl-Hcy">
+                        <rect key="frame" x="0.0" y="0.0" width="393" height="852"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="0" translatesAutoresizingMaskIntoConstraints="NO" id="To3-bJ-3Mz">
+                                <rect key="frame" x="0.0" y="103" width="393" height="666"/>
+                            </imageView>
+                        </subviews>
+                        <viewLayoutGuide key="safeArea" id="Xjk-t9-u3A"/>
+                        <color key="backgroundColor" name="YP Black"/>
+                        <constraints>
+                            <constraint firstItem="To3-bJ-3Mz" firstAttribute="top" secondItem="Xjk-t9-u3A" secondAttribute="top" id="71x-hi-rfQ"/>
+                            <constraint firstItem="To3-bJ-3Mz" firstAttribute="trailing" secondItem="Xjk-t9-u3A" secondAttribute="trailing" id="8sN-0Q-lVd"/>
+                            <constraint firstItem="To3-bJ-3Mz" firstAttribute="bottom" secondItem="Xjk-t9-u3A" secondAttribute="bottom" id="mIE-fF-H7d"/>
+                            <constraint firstItem="To3-bJ-3Mz" firstAttribute="leading" secondItem="Xjk-t9-u3A" secondAttribute="leading" id="tCU-35-bpc"/>
+                        </constraints>
+                    </view>
+                    <navigationItem key="navigationItem" id="Odn-2J-3Qe"/>
+                    <connections>
+                        <outlet property="imageView" destination="To3-bJ-3Mz" id="XjM-60-v81"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="Ta3-FT-2YW" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="2489" y="325"/>
         </scene>
         <!--Tab Bar Controller-->
         <scene sceneID="ppf-5l-I5E">
