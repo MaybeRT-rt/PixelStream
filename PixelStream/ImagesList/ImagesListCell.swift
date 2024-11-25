@@ -8,6 +8,7 @@
 import UIKit
 
 final class ImagesListCell: UITableViewCell {
+    
     static let identifier = "ImagesListCell"
     
     @IBOutlet var imageContent: UIImageView!
