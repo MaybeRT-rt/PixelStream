@@ -7,12 +7,13 @@
 
 import UIKit
 
-class SingleImageViewController: UIViewController {
+final class SingleImageViewController: UIViewController {
     
     var image: UIImage? {
         didSet {
-            guard isViewLoaded else { return }
+            guard isViewLoaded, let image else { return }
             imageView.image = image
+            rescaleAndCenterImageInScrollView(image: image)
         }
     }
     
@@ -21,10 +22,62 @@ class SingleImageViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        scrollView.minimumZoomScale = 0.1
+        scrollView.maximumZoomScale = 1.25
+        
+        guard let image else { return }
         imageView.image = image
+        //imageView.frame.size = image.size
+        rescaleAndCenterImageInScrollView(image: image)
+    }
+    
+    override func viewDidLayoutSubviews() {
+        super.viewDidLayoutSubviews()
+        guard let image = image else { return }
+        rescaleAndCenterImageInScrollView(image: image)
     }
     
     @IBAction private func didTapBackButton() {
         dismiss(animated: true, completion: nil)
+    }
+    
+    private func rescaleAndCenterImageInScrollView(image: UIImage) {
+        // Обновляем интерфейс для применения новых размеров
+        view.layoutIfNeeded()
+        
+        // Получаем размеры области прокрутки и изображения
+        let visibleRectSize = scrollView.bounds.size
+        let imageSize = image.size
+        
+        // Рассчитываем масштаб, чтобы изображение пропорционально заполнило экран
+        let hScale = visibleRectSize.width / imageSize.width
+        let vScale = visibleRectSize.height / imageSize.height
+        let scale = max(hScale, vScale) // Используем максимальный масштаб, чтобы изображение заполнило экран
+        
+        // Устанавливаем минимальный и максимальный масштаб
+        scrollView.minimumZoomScale = scale
+        scrollView.zoomScale = scale
+        
+        // Масштабируем изображение
+        imageView.frame.size = CGSize(width: imageSize.width * scale, height: imageSize.height * scale)
+        
+        // Вычисляем отступы для центрирования изображения в области прокрутки
+        let horizontalInset = max((visibleRectSize.width - imageView.frame.width) / 2, 0)
+        let verticalInset = max((visibleRectSize.height - imageView.frame.height) / 2, 0)
+        
+        // Центрируем изображение с учетом отступов
+        scrollView.contentInset = UIEdgeInsets(top: verticalInset, left: horizontalInset, bottom: verticalInset, right: horizontalInset)
+        
+        // Центрируем содержимое прокрутки, чтобы показать центр изображения
+        scrollView.setContentOffset(CGPoint(
+            x: (imageView.frame.width - visibleRectSize.width) / 2,
+            y: (imageView.frame.height - visibleRectSize.height) / 2),
+                                    animated: false)
+    }
+}
+
+extension SingleImageViewController: UIScrollViewDelegate {
+    func viewForZooming(in scrollView: UIScrollView) -> UIView? {
+        return imageView
     }
 }
