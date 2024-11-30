@@ -146,10 +146,10 @@
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleAspectFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Jz8-6B-MLq">
-                                <rect key="frame" x="171.66666666666666" y="742" width="50" height="50"/>
+                                <rect key="frame" x="171" y="741" width="51" height="51"/>
                                 <constraints>
-                                    <constraint firstAttribute="width" constant="50" id="Bll-N9-ZNM"/>
-                                    <constraint firstAttribute="height" constant="50" id="W4n-sf-40I"/>
+                                    <constraint firstAttribute="width" constant="51" id="Bll-N9-ZNM"/>
+                                    <constraint firstAttribute="height" constant="51" id="W4n-sf-40I"/>
                                 </constraints>
                                 <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
                                 <state key="normal" image="Sharing_Button"/>

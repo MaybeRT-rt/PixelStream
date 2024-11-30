@@ -7,7 +7,7 @@
 
 import UIKit
 
-class ImagesListViewController: UIViewController {
+final class ImagesListViewController: UIViewController {
     private let showSingleImageSegueIdentifier = "ShowSingleImage"
     
     @IBOutlet weak var tableView: UITableView!
@@ -46,28 +46,14 @@ class ImagesListViewController: UIViewController {
 
 extension ImagesListViewController {
     func configCell(for cell: ImagesListCell, with indexPath: IndexPath) {
-        cell.imageContent.image = nil
-        guard let mockImage = UIImage(named: photosName[indexPath.row]) else {
-            return
-        }
+        guard let mockImage = UIImage(named: photosName[indexPath.row]) else { return }
         
-        cell.imageContent?.image = mockImage
-        cell.dateLabel.text = dateFormatter.string(from: Date())
-       
-        setGradientBackground(for: cell)
-        
-        configureLikeButton(for: cell, at: indexPath)
-    }
-    
-    private func setGradientBackground(for cell: ImagesListCell) {
-        cell.imageViewGradient.image = UIImage(named: "rectangle")
-    }
-    
-    private func configureLikeButton(for cell: ImagesListCell, at indexPath: IndexPath) {
+        let date = dateFormatter.string(from: Date())
         let isLike = indexPath.row.isMultiple(of: 2)
-        let imageLike = isLike ? UIImage(named: "Like") : UIImage(named: "LikeEmpty")
-        cell.likeButton.setImage(imageLike, for: .normal)
+        
+        cell.configure(with: mockImage, date: date, isLiked: isLike)
     }
+  
 }
 
 extension ImagesListViewController: UITableViewDataSource {

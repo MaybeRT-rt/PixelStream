@@ -7,7 +7,7 @@
 
 import UIKit
 
-class ProfileViewController: UIViewController {
+final class ProfileViewController: UIViewController {
     
     // MARK: - UI Elements
     private var avatarImage: UIImageView = {
@@ -52,6 +52,7 @@ class ProfileViewController: UIViewController {
     private lazy var stackViewAvatarAndLogout: UIStackView = {
         let stackView = UIStackView(arrangedSubviews: [avatarImage, logoutButton])
         stackView.axis = .horizontal
+        stackView.alignment = .center
         stackView.translatesAutoresizingMaskIntoConstraints = false
         return stackView
     }()

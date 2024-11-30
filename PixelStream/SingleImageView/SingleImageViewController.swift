@@ -54,6 +54,12 @@ final class SingleImageViewController: UIViewController {
         let visibleRectSize = scrollView.bounds.size
         let imageSize = image.size
         
+        //Проверяем размеры
+        guard imageSize.width > 0 && imageSize.height > 0 else {
+            print("Ошибка размеров изображения")
+            return
+        }
+        
         // Рассчитываем масштаб, чтобы изображение пропорционально заполнило экран
         let hScale = visibleRectSize.width / imageSize.width
         let vScale = visibleRectSize.height / imageSize.height
@@ -75,8 +81,8 @@ final class SingleImageViewController: UIViewController {
         
         // Центрируем содержимое прокрутки, чтобы показать центр изображения
         scrollView.setContentOffset(CGPoint(
-            x: (imageView.frame.width - visibleRectSize.width) / 2,
-            y: (imageView.frame.height - visibleRectSize.height) / 2),
+            x: max((imageView.frame.width - visibleRectSize.width) / 2, 0),
+            y: max((imageView.frame.height - visibleRectSize.height) / 2, 0)),
                                     animated: false)
     }
 }
