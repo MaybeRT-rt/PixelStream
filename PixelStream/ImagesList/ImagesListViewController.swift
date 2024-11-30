@@ -53,7 +53,17 @@ extension ImagesListViewController {
         
         cell.imageContent?.image = mockImage
         cell.dateLabel.text = dateFormatter.string(from: Date())
+       
+        setGradientBackground(for: cell)
         
+        configureLikeButton(for: cell, at: indexPath)
+    }
+    
+    private func setGradientBackground(for cell: ImagesListCell) {
+        cell.imageViewGradient.image = UIImage(named: "rectangle")
+    }
+    
+    private func configureLikeButton(for cell: ImagesListCell, at indexPath: IndexPath) {
         let isLike = indexPath.row.isMultiple(of: 2)
         let imageLike = isLike ? UIImage(named: "Like") : UIImage(named: "LikeEmpty")
         cell.likeButton.setImage(imageLike, for: .normal)
