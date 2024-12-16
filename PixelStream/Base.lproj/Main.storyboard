@@ -30,7 +30,7 @@
                                 <state key="normal" title="Войти"/>
                                 <connections>
                                     <action selector="loginInTapped:" destination="WVL-de-Od0" eventType="touchUpInside" id="iHU-ps-fp8"/>
-                                    <segue destination="DQb-FZ-9JN" kind="show" identifier="WebViewViewController.swift" id="i3k-qR-stS"/>
+                                    <segue destination="DQb-FZ-9JN" kind="presentation" identifier="WebViewViewController.swift" modalPresentationStyle="fullScreen" id="i3k-qR-stS"/>
                                 </connections>
                             </button>
                             <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" image="auth_screen_logo" translatesAutoresizingMaskIntoConstraints="NO" id="zxe-ai-o5M">
@@ -67,25 +67,41 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <wkWebView contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="faN-w2-l4p">
-                                <rect key="frame" x="0.0" y="103" width="393" height="749"/>
+                                <rect key="frame" x="0.0" y="0.0" width="393" height="852"/>
                                 <color key="backgroundColor" red="0.36078431370000003" green="0.38823529410000002" blue="0.4039215686" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <wkWebViewConfiguration key="configuration">
                                     <audiovisualMediaTypes key="mediaTypesRequiringUserActionForPlayback" none="YES"/>
                                     <wkPreferences key="preferences"/>
                                 </wkWebViewConfiguration>
                             </wkWebView>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="NR2-4w-WN0">
+                                <rect key="frame" x="0.0" y="0.0" width="64" height="44"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="44" id="WKN-Ux-r4S"/>
+                                    <constraint firstAttribute="width" constant="64" id="ZRh-fQ-QHj"/>
+                                </constraints>
+                                <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
+                                <state key="normal" title=" " image="nav_back_button"/>
+                                <connections>
+                                    <action selector="didTapBackButton:" destination="DQb-FZ-9JN" eventType="touchUpInside" id="YIK-j8-GlP"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="jjz-sa-48H"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                         <constraints>
+                            <constraint firstItem="jjz-sa-48H" firstAttribute="trailing" relation="greaterThanOrEqual" secondItem="NR2-4w-WN0" secondAttribute="trailing" symbolic="YES" id="9gE-43-lPJ"/>
+                            <constraint firstItem="NR2-4w-WN0" firstAttribute="leading" secondItem="Msd-XA-ZNU" secondAttribute="leadingMargin" constant="-16" id="CsX-ai-n61"/>
                             <constraint firstAttribute="bottom" secondItem="faN-w2-l4p" secondAttribute="bottom" id="EFR-HW-gMo"/>
                             <constraint firstItem="faN-w2-l4p" firstAttribute="trailing" secondItem="jjz-sa-48H" secondAttribute="trailing" id="hnn-MA-wTD"/>
+                            <constraint firstItem="NR2-4w-WN0" firstAttribute="top" secondItem="jjz-sa-48H" secondAttribute="top" id="qAO-Hj-roj"/>
                             <constraint firstItem="faN-w2-l4p" firstAttribute="top" secondItem="jjz-sa-48H" secondAttribute="top" id="shV-CN-dBp"/>
                             <constraint firstItem="faN-w2-l4p" firstAttribute="leading" secondItem="jjz-sa-48H" secondAttribute="leading" id="xp7-L6-C9P"/>
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" id="JdY-R8-T2l"/>
                     <connections>
+                        <outlet property="backButton" destination="NR2-4w-WN0" id="rJv-pM-opJ"/>
                         <outlet property="webView" destination="faN-w2-l4p" id="Nx4-YR-3U3"/>
                     </connections>
                 </viewController>
@@ -328,6 +344,7 @@
         <image name="Like" width="42" height="42"/>
         <image name="Sharing_Button" width="51" height="51"/>
         <image name="auth_screen_logo" width="60" height="60"/>
+        <image name="nav_back_button" width="24" height="24"/>
         <image name="rectangle" width="343" height="30"/>
         <image name="tab_editorial_active" width="30" height="30"/>
         <image name="tab_profile_active" width="24" height="24"/>
