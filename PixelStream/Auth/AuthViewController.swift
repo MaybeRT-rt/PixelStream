@@ -13,6 +13,7 @@ final class AuthViewController: UIViewController {
     @IBOutlet private weak var authLogo: UIImageView!
     
     static let indicator = "ShowWebView"
+    private var webVC: WebViewController?
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -41,7 +42,6 @@ final class AuthViewController: UIViewController {
         navigationItem.backBarButtonItem = UIBarButtonItem(title: "", style: .plain, target: nil, action: nil)
         navigationItem.backBarButtonItem?.tintColor = UIColor(named: "YP Black")
     }
-    
     
     @IBAction func loginInTapped(_ sender: Any) {
     }

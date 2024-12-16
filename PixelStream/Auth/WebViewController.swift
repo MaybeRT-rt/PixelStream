@@ -14,9 +14,10 @@ class WebViewController: UIViewController {
     @IBOutlet weak var backButton: UIButton!
     
     enum WebViewConstants {
-        static let unsplashAuthorizeURLString = "https://www.unplash.com/oauth/authorize"
+        static let unsplashAuthorizeURLString = "https://unsplash.com/oauth/authorize"
     }
     
+    weak var delegate: WebViewControllerDelegate?
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -44,6 +45,23 @@ class WebViewController: UIViewController {
         webView.load(request)
     }
     
+    @IBAction func didTapBackButton(_ sender: Any) {
+        dismiss(animated: true, completion: nil)
+    }
+}
+
+extension WebViewController: WKNavigationDelegate {
+    
+    func webView(_ webView: WKWebView, decidePolicyFor navigationAction: WKNavigationAction,
+        decisionHandler: @escaping (WKNavigationActionPolicy) -> Void) {
+        if let code = code(from: navigationAction) {
+            delegate?.webViewController(self, didAuthenticateWithCode: code)
+            decisionHandler(.cancel)
+        } else {
+            decisionHandler(.allow)
+        }
+    }
+    
     private func code(from navigationAction: WKNavigationAction) -> String? {
         if let url = navigationAction.request.url,
            let urlComponents = URLComponents(string: url.absoluteString),
@@ -55,18 +73,18 @@ class WebViewController: UIViewController {
             return nil
         }
     }
-    
-    @IBAction func didTapBackButton(_ sender: Any) {
-        dismiss(animated: true, completion: nil)
-    }
 }
 
-extension WebViewController: WKNavigationDelegate {
-    func webView(_ webView: WKWebView, decidePolicyFor navigationAction: WKNavigationAction, decisionHandler: @escaping @MainActor (WKNavigationActionPolicy) -> Void) {
-        if let code = code(from: navigationAction) {
-            decisionHandler(.cancel)
-        } else {
-            decisionHandler(.allow)
-        }
+extension WebViewController: WebViewControllerDelegate {
+    func webViewController(_ vc: WebViewController, didAuthenticateWithCode code: String) {
+//        print("Получен код авторизации: \(code)")
+//        vc.dismiss(animated: true)
     }
+    
+    func webViewControllerDidCancel(_ vc: WebViewController) {
+        print("Авторизация отменена")
+        vc.dismiss(animated: true)
+    }
+    
+    
 }
