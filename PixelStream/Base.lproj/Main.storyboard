@@ -86,14 +86,20 @@
                                     <action selector="didTapBackButton:" destination="DQb-FZ-9JN" eventType="touchUpInside" id="YIK-j8-GlP"/>
                                 </connections>
                             </button>
+                            <progressView opaque="NO" contentMode="scaleToFill" verticalHuggingPriority="750" progress="0.5" translatesAutoresizingMaskIntoConstraints="NO" id="gxS-CB-QRq">
+                                <rect key="frame" x="0.0" y="35" width="393" height="4"/>
+                            </progressView>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="jjz-sa-48H"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                         <constraints>
+                            <constraint firstItem="gxS-CB-QRq" firstAttribute="leading" secondItem="jjz-sa-48H" secondAttribute="leading" id="6fj-iT-CWR"/>
                             <constraint firstItem="jjz-sa-48H" firstAttribute="trailing" relation="greaterThanOrEqual" secondItem="NR2-4w-WN0" secondAttribute="trailing" symbolic="YES" id="9gE-43-lPJ"/>
                             <constraint firstItem="NR2-4w-WN0" firstAttribute="leading" secondItem="Msd-XA-ZNU" secondAttribute="leadingMargin" constant="-16" id="CsX-ai-n61"/>
                             <constraint firstAttribute="bottom" secondItem="faN-w2-l4p" secondAttribute="bottom" id="EFR-HW-gMo"/>
+                            <constraint firstItem="gxS-CB-QRq" firstAttribute="trailing" secondItem="jjz-sa-48H" secondAttribute="trailing" id="W9v-gd-RfD"/>
                             <constraint firstItem="faN-w2-l4p" firstAttribute="trailing" secondItem="jjz-sa-48H" secondAttribute="trailing" id="hnn-MA-wTD"/>
+                            <constraint firstItem="gxS-CB-QRq" firstAttribute="top" secondItem="jjz-sa-48H" secondAttribute="top" constant="35" id="jgu-6u-9m5"/>
                             <constraint firstItem="NR2-4w-WN0" firstAttribute="top" secondItem="jjz-sa-48H" secondAttribute="top" id="qAO-Hj-roj"/>
                             <constraint firstItem="faN-w2-l4p" firstAttribute="top" secondItem="jjz-sa-48H" secondAttribute="top" id="shV-CN-dBp"/>
                             <constraint firstItem="faN-w2-l4p" firstAttribute="leading" secondItem="jjz-sa-48H" secondAttribute="leading" id="xp7-L6-C9P"/>
@@ -102,6 +108,7 @@
                     <navigationItem key="navigationItem" id="JdY-R8-T2l"/>
                     <connections>
                         <outlet property="backButton" destination="NR2-4w-WN0" id="rJv-pM-opJ"/>
+                        <outlet property="progressView" destination="gxS-CB-QRq" id="YLx-vD-b7p"/>
                         <outlet property="webView" destination="faN-w2-l4p" id="Nx4-YR-3U3"/>
                     </connections>
                 </viewController>
