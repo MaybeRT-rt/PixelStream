@@ -7,12 +7,18 @@
 
 import UIKit
 
+protocol AuthViewControllerDelegate: AnyObject {
+    func authViewController(_ vc: AuthViewController, didAuthenticateWithCode code: String)
+}
+
 final class AuthViewController: UIViewController {
     
     @IBOutlet private weak var loginButton: UIButton!
     @IBOutlet private weak var authLogo: UIImageView!
     
-    static let indicator = "ShowWebView"
+    weak var delegate: AuthViewControllerDelegate?
+    
+    static let indificatorSegue = "ShowWebView"
     private var webVC: WebViewController?
     
     override func viewDidLoad() {
@@ -21,8 +27,16 @@ final class AuthViewController: UIViewController {
         configureBackButton()
     }
     
+    
+    
     private func setupUI() {
+        
+        guard let loginButton = loginButton, let authLogo = authLogo else {
+               fatalError("UI elements are not properly connected in the storyboard.")
+           }
+        
         loginButton.layer.cornerRadius = 16
+    
         
         NSLayoutConstraint.activate([
             authLogo.heightAnchor.constraint(equalToConstant: 60),
@@ -43,6 +57,39 @@ final class AuthViewController: UIViewController {
         navigationItem.backBarButtonItem?.tintColor = UIColor(named: "YP Black")
     }
     
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if segue.identifier == AuthViewController.indificatorSegue {
+            guard
+                let webViewViewController = segue.destination as? WebViewController
+            else { fatalError("Failed to prepare for \(AuthViewController.indificatorSegue)") }
+            webViewViewController.delegate = self
+        } else {
+            super.prepare(for: segue, sender: sender)
+        }
+    }
+    
     @IBAction func loginInTapped(_ sender: Any) {
+        
+    }
+}
+
+extension AuthViewController: WebViewControllerDelegate {
+    
+    func webViewController(_ vc: WebViewController, didAuthenticateWithCode code: String) {
+        OAuth2Service().fetchOAuthToken(code) { result in
+            switch result {
+            case .success(let token):
+                // Сохраняем токен
+                OAuth2TokenStorage().token = token
+                print("Access token: \(token)")
+            case .failure(let error):
+                print("Failed to fetch token: \(error)")
+            }
+        }
+    }
+    
+    func webViewControllerDidCancel(_ vc: WebViewController) {
+        print("Авторизация отменена")
+        vc.dismiss(animated: true)
     }
 }
