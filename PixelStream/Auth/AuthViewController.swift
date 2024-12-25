@@ -27,8 +27,6 @@ final class AuthViewController: UIViewController {
         configureBackButton()
     }
     
-    
-    
     private func setupUI() {
         
         guard let loginButton = loginButton, let authLogo = authLogo else {
