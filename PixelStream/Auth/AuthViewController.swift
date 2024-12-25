@@ -30,11 +30,11 @@ final class AuthViewController: UIViewController {
     private func setupUI() {
         
         guard let loginButton = loginButton, let authLogo = authLogo else {
-               fatalError("UI elements are not properly connected in the storyboard.")
-           }
+            fatalError("UI elements are not properly connected in the storyboard.")
+        }
         
         loginButton.layer.cornerRadius = 16
-    
+        
         
         NSLayoutConstraint.activate([
             authLogo.heightAnchor.constraint(equalToConstant: 60),
@@ -45,7 +45,7 @@ final class AuthViewController: UIViewController {
             loginButton.bottomAnchor.constraint(equalTo: view.bottomAnchor, constant: 90),
             loginButton.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 16),
             loginButton.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -16),
-            ])
+        ])
     }
     
     private func configureBackButton() {
@@ -57,9 +57,10 @@ final class AuthViewController: UIViewController {
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if segue.identifier == AuthViewController.indificatorSegue {
-            guard
-                let webViewViewController = segue.destination as? WebViewController
-            else { fatalError("Failed to prepare for \(AuthViewController.indificatorSegue)") }
+            guard let webViewViewController = segue.destination as? WebViewController
+            else {
+                fatalError("Failed to prepare for \(AuthViewController.indificatorSegue)")
+            }
             webViewViewController.delegate = self
         } else {
             super.prepare(for: segue, sender: sender)

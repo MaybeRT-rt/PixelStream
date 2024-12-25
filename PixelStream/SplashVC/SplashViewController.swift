@@ -54,8 +54,7 @@ final class SplashViewController: UIViewController {
 
     private func switchToTabBarController() {
         guard let window = UIApplication.shared.windows.first else { fatalError("Invalid Configuration") }
-        let tabBarController = UIStoryboard(name: "Main", bundle: .main)
-            .instantiateViewController(withIdentifier: "TabBarViewController")
+        let tabBarController = UIStoryboard(name: "Main", bundle: .main).instantiateViewController(withIdentifier: "TabBarViewController")
         window.rootViewController = tabBarController
     }
 }
@@ -63,10 +62,11 @@ final class SplashViewController: UIViewController {
 extension SplashViewController {
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if segue.identifier == segueIdentifier {
-            guard
-                let navigationController = segue.destination as? UINavigationController,
+            guard let navigationController = segue.destination as? UINavigationController,
                 let viewController = navigationController.viewControllers[0] as? AuthViewController
-            else { fatalError("Failed to prepare for \(segueIdentifier)") }
+            else {
+                fatalError("Failed to prepare for \(segueIdentifier)")
+            }
             viewController.delegate = self
         } else {
             super.prepare(for: segue, sender: sender)
@@ -89,7 +89,6 @@ extension SplashViewController: AuthViewControllerDelegate {
             case .success:
                 self.switchToTabBarController()
             case .failure:
-                
                 break
             }
         }
