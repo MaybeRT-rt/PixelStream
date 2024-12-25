@@ -26,6 +26,8 @@ final class WebViewController: UIViewController {
     weak var delegate: WebViewControllerDelegate?
 
     private var observerContext = 0
+    private var isProgressObserverAdded = false  // Флаг для отслеживания состояния наблюдателя
+
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -49,6 +51,7 @@ final class WebViewController: UIViewController {
 
     @IBAction private func didTapBackButton(_ sender: Any) {
         dismiss(animated: true, completion: nil)
+        isProgressObserverAdded = true
     }
     
     private func loadAuthView() {
@@ -68,6 +71,7 @@ final class WebViewController: UIViewController {
         guard let url = URL(string: "https://unsplash.com") else { return }
         let request = URLRequest(url: url)
         webView.load(request)
+        updateProgress()
     }
     
     private func updateProgress() {
@@ -76,10 +80,12 @@ final class WebViewController: UIViewController {
     }
     
     private func addProgressObserver() {
+        guard !isProgressObserverAdded else { return }
         webView.addObserver(self, forKeyPath: #keyPath(WKWebView.estimatedProgress), options: .new, context: &observerContext)
     }
 
     private func removeProgressObserver() {
+        guard !isProgressObserverAdded else { return }
         webView.removeObserver(self, forKeyPath: #keyPath(WKWebView.estimatedProgress), context: &observerContext)
     }
     
