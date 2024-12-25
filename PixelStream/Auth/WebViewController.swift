@@ -6,7 +6,7 @@
 //
 
 import UIKit
-import WebKit
+@preconcurrency import WebKit
 
 protocol WebViewControllerDelegate: AnyObject {
     func webViewController(_ vc: WebViewController, didAuthenticateWithCode code: String)

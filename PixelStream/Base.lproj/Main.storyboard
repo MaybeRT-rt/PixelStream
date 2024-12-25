@@ -59,7 +59,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="fNc-CB-I9n" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="138" y="960"/>
+            <point key="canvasLocation" x="100" y="960"/>
         </scene>
         <!--Web View Controller-->
         <scene sceneID="oze-N0-Gls">
@@ -118,7 +118,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="27M-dE-gSc" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1071" y="960"/>
+            <point key="canvasLocation" x="755" y="960"/>
         </scene>
         <!--Images List View Controller-->
         <scene sceneID="tne-QT-ifu">
@@ -220,7 +220,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1681.679389312977" y="347.88732394366201"/>
+            <point key="canvasLocation" x="755" y="319"/>
         </scene>
         <!--Single Image View Controller-->
         <scene sceneID="idS-iU-U1x">
@@ -290,7 +290,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Ta3-FT-2YW" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2608.3969465648852" y="347.88732394366201"/>
+            <point key="canvasLocation" x="1508" y="318"/>
         </scene>
         <!--Tab Bar Controller-->
         <scene sceneID="ppf-5l-I5E">
@@ -363,7 +363,7 @@
                             </imageView>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="cHJ-tM-3e2"/>
-                        <color key="backgroundColor" red="0.1019607843" green="0.1058823529" blue="0.1333333333" alpha="1" colorSpace="calibratedRGB"/>
+                        <color key="backgroundColor" name="YP Black"/>
                         <constraints>
                             <constraint firstItem="CQd-Qs-q1F" firstAttribute="centerY" secondItem="FtB-Tm-WOj" secondAttribute="centerY" id="ELc-XH-E2i"/>
                             <constraint firstItem="CQd-Qs-q1F" firstAttribute="centerX" secondItem="FtB-Tm-WOj" secondAttribute="centerX" id="sZC-cK-Qvr"/>
@@ -375,7 +375,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="TSx-KJ-1LY" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-1563" y="960"/>
+            <point key="canvasLocation" x="-1265" y="960"/>
         </scene>
     </scenes>
     <resources>
