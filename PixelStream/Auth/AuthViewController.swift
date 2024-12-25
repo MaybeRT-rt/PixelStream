@@ -89,7 +89,6 @@ extension AuthViewController: WebViewControllerDelegate {
     }
     
     func webViewControllerDidCancel(_ vc: WebViewController) {
-        print("Авторизация отменена")
-        vc.dismiss(animated: true)
+        dismiss(animated: true)
     }
 }

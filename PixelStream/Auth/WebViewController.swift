@@ -20,7 +20,7 @@ final class WebViewController: UIViewController {
     @IBOutlet private weak var progressView: UIProgressView!
     
     enum WebViewConstants {
-        static let unsplashAuthorizeURLString = "https://unsplash.com/oauth/authorize"
+        static let unsplashAuthorizeURLString = "https://unsplash.com/login"
     }
     
     weak var delegate: WebViewControllerDelegate?
@@ -33,6 +33,7 @@ final class WebViewController: UIViewController {
         super.viewDidLoad()
         webView.navigationDelegate = self
         loadAuthView()
+        //checkAuthorizationStatus()
     }
     
     override func viewDidAppear(_ animated: Bool) {
@@ -51,7 +52,8 @@ final class WebViewController: UIViewController {
 
     @IBAction private func didTapBackButton(_ sender: Any) {
         dismiss(animated: true, completion: nil)
-        isProgressObserverAdded = true
+        delegate?.webViewControllerDidCancel(self)
+        removeProgressObserver()
     }
     
     private func loadAuthView() {
@@ -64,7 +66,11 @@ final class WebViewController: UIViewController {
             URLQueryItem(name: "scope", value: AccessScope)
         ]
         
-        loadPhotoFeed()
+        guard let url = urlComponents.url else { return }
+        
+        let request = URLRequest(url: url)
+        updateProgress()
+        webView.load(request)
     }
 
     private func loadPhotoFeed() {
@@ -74,6 +80,17 @@ final class WebViewController: UIViewController {
         updateProgress()
     }
     
+    private func checkAuthorizationStatus() {
+        // Проверяем, есть ли сохраненный токен
+        if let accessToken = UserDefaults.standard.string(forKey: "Token"), !accessToken.isEmpty {
+            // Если токен есть — показываем ленту
+            loadPhotoFeed()
+        } else {
+            // Если токен отсутствует — показываем окно авторизации
+            loadAuthView()
+        }
+    }
+
     private func updateProgress() {
         progressView.progress = Float(webView.estimatedProgress)
         progressView.isHidden = fabs(webView.estimatedProgress - 1.0) <= 0.0001
@@ -82,11 +99,13 @@ final class WebViewController: UIViewController {
     private func addProgressObserver() {
         guard !isProgressObserverAdded else { return }
         webView.addObserver(self, forKeyPath: #keyPath(WKWebView.estimatedProgress), options: .new, context: &observerContext)
+        isProgressObserverAdded = true
     }
 
     private func removeProgressObserver() {
-        guard !isProgressObserverAdded else { return }
+        guard isProgressObserverAdded else { return }
         webView.removeObserver(self, forKeyPath: #keyPath(WKWebView.estimatedProgress), context: &observerContext)
+        isProgressObserverAdded = false
     }
     
     override func observeValue(forKeyPath keyPath: String?, of object: Any?, change: [NSKeyValueChangeKey : Any]?, context: UnsafeMutableRawPointer?) {
@@ -104,6 +123,8 @@ extension WebViewController: WKNavigationDelegate {
     
     func webView(_ webView: WKWebView, decidePolicyFor navigationAction: WKNavigationAction, decisionHandler: @escaping (WKNavigationActionPolicy) -> Void) {
         if let code = extractCode(from: navigationAction) {
+            // Сохраняем полученный код авторизации
+         //   UserDefaults.standard.set(code, forKey: "Token")
             delegate?.webViewController(self, didAuthenticateWithCode: code)
             decisionHandler(.cancel)
         } else {

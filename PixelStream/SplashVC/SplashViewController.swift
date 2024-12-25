@@ -7,6 +7,7 @@
 
 import UIKit
 
+
 final class SplashViewController: UIViewController {
     private let segueIdentifier = "inLogin"
 
@@ -16,7 +17,7 @@ final class SplashViewController: UIViewController {
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
 
-        if oauth2TokenStorage.token != nil {
+        if (oauth2TokenStorage.token != nil) {
             switchToTabBarController()
         } else {
             showAuthScreen()
@@ -42,8 +43,10 @@ final class SplashViewController: UIViewController {
             // Устанавливаем стиль отображения на fullscreen
             navController.modalPresentationStyle = .fullScreen
             
-            // Презентуем контроллер
-            present(navController, animated: true, completion: nil)
+            // Презентуем контроллер с анимацией
+            DispatchQueue.main.async {
+                self.present(navController, animated: true, completion: nil)
+            }
         } else {
             print("Не удалось найти контроллер с идентификатором 'isLogin'")
         }
@@ -86,7 +89,7 @@ extension SplashViewController: AuthViewControllerDelegate {
             case .success:
                 self.switchToTabBarController()
             case .failure:
-                // TODO [Sprint 11]
+                
                 break
             }
         }
